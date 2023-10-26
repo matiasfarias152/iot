@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Prueba iot</string>
+    <string name="contrasenia">Contraseña</string>
+    <string name="usuario">Usuario</string>
+    <string name="btnIngresar">Acceder</string>
+    <string name="correo">Correo</string>
+    <string name="title_activity_olvidarcuenta">Olvidarcuenta</string>
+    <string name="contrasenia2">Reingrese Contraseña</string>
+    <string name="btnRegistrar">Registrar</string>
+    <string name="registrate">Crear Cuenta</string>
+    <string name="listadoactividades">Listado actividades</string>
+    <string name="comunidades">Comunidades</string>
+    <string name="listadeamigos">Lista de amigos</string>
+    <string name="registraractivida">Registrar actividad</string>
+    <string name="invitaractividad">Invitar actividad</string>
+    <string name="registrarcomunidad">Registrar comunidad</string>
+    <string name="inicio">Inicio</string>
+    <string name="salir">Salir</string>
+    <string name="olvidarcontrasena">¿Olvidaste tu contraseña?</string>
+    <string name="unirseactividad">Unirse a actividad</string>
+    <string name="tipoactividad">Tipo de actividad</string>
+    <string name="fecha">Fecha</string>
+    <string name="hora">Hora</string>
+    <string name="Lugar">Lugar</string>
+    <string name="nombrecomunidad">Nombre comunidad</string>
+    <string name="descripcion">Descripción</string>
+    <string name="idusuario">Id usuario</string>
+    <string name="nombreactividad">Nombre actividad</string>
+    <string name="invitar">Invitar</string>
+    <string name="escribaunmensaje">Escriba un mensaje...</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="entrarchat">Chat</string>
+
+
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

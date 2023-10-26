@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/opcion1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/registraractivida" />
+    <item
+        android:id="@+id/opcion2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/invitaractividad" />
+    <item
+        android:id="@+id/opcion3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/registrarcomunidad" />
+    <item
+        android:id="@+id/opcion4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/listadeamigos" />
+    <item
+        android:id="@+id/opcion5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/listadoactividades" />
+    <item
+        android:id="@+id/opcion6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/comunidades" />
+</menu>

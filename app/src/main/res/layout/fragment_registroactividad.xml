@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contenidoFragmentoregistro"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="registrarActividad"
+    tools:context=".registroactividad">
+
+    <Button
+        android:id="@+id/btnRegistrarActividad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="46dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/registraractivida"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/registrolugar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="57dp"
+        android:ems="10"
+        android:hint="@string/Lugar"
+        android:inputType="textPostalAddress"
+        app:layout_constraintStart_toStartOf="@+id/registrohora"
+        app:layout_constraintTop_toBottomOf="@+id/registrohora" />
+
+    <EditText
+        android:id="@+id/registrotipoactividad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:ems="10"
+        android:hint="@string/tipoactividad"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@+id/registronombreactividad"
+        app:layout_constraintTop_toBottomOf="@+id/registronombreactividad" />
+
+    <EditText
+        android:id="@+id/registrofecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="49dp"
+        android:ems="10"
+        android:hint="@string/fecha"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="@+id/registrotipoactividad"
+        app:layout_constraintTop_toBottomOf="@+id/registrotipoactividad" />
+
+    <EditText
+        android:id="@+id/registrohora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:ems="10"
+        android:hint="@string/hora"
+        android:inputType="time"
+        app:layout_constraintStart_toStartOf="@+id/registrofecha"
+        app:layout_constraintTop_toBottomOf="@+id/registrofecha" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="82dp"
+        android:text="@string/registraractivida"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/registronombreactividad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/nombreactividad"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
