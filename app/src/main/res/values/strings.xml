@@ -30,8 +30,10 @@
     <string name="escribaunmensaje">Escriba un mensaje...</string>
     <string name="eliminar">Eliminar</string>
     <string name="entrarchat">Chat</string>
-
-
+    <string name="unirse">Unirse</string>
+    <string name="listaintegrantes">Lista de integrantes</string>
+    <string name="anadir">Añadir</string>
+    <string name="codigoactividad">Codigo actividad</string>
 
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

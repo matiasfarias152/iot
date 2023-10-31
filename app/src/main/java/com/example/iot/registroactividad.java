@@ -7,11 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class registroactividad extends Fragment {
@@ -20,10 +25,8 @@ public class registroactividad extends Fragment {
     private EditText campo2;
     private EditText campo3;
     private EditText campo4;
-
     private EditText campo5;
     private Button botonRegistrar;
-
     private FirebaseFirestore db;
 
     @Override
@@ -39,7 +42,6 @@ public class registroactividad extends Fragment {
 
         db = FirebaseFirestore.getInstance();
 
-
         botonRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,52 +49,62 @@ public class registroactividad extends Fragment {
             }
         });
 
-        view.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // Consume el evento táctil para evitar que se propague más allá del Fragment
-                return true;
-            }
-        });
-
         return view;
     }
 
     private void registrarActividad() {
-        String valorCampo1 = campo1.getText().toString();
-        String valorCampo2 = campo2.getText().toString();
-        String valorCampo3 = campo3.getText().toString();
-        String valorCampo4 = campo4.getText().toString();
-        String valorCampo5 = campo5.getText().toString();
+        String valorCampo1 = campo1.getText().toString().trim();
+        String valorCampo2 = campo2.getText().toString().trim();
+        String valorCampo3 = campo3.getText().toString().trim();
+        String valorCampo4 = campo4.getText().toString().trim();
+        String valorCampo5 = campo5.getText().toString().trim();
 
-        // Crear un mapa con los datos a registrar
-        Map<String, Object> actividad = new HashMap<>();
-        actividad.put("tipoactividad", valorCampo1);
-        actividad.put("fecha", valorCampo2);
-        actividad.put("hora", valorCampo3);
-        actividad.put("lugar", valorCampo4);
-        actividad.put("nombreactividad",valorCampo5);
+        if (valorCampo1.isEmpty() || valorCampo2.isEmpty() || valorCampo3.isEmpty() || valorCampo4.isEmpty() || valorCampo5.isEmpty()) {
+            Toast.makeText(getContext(), "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+        } else {
+            Map<String, Object> actividad = new HashMap<>();
+            List<String> usuarios = new ArrayList<>();
 
-        // Agregar la actividad a Firestore
-        db.collection("actividades")
-                .add(actividad)
-                .addOnSuccessListener(documentReference -> {
-                    // Éxito al registrar la actividad
-                    campo1.setText("");
-                    campo2.setText("");
-                    campo3.setText("");
-                    campo4.setText("");
-                    campo5.setText("");
+            actividad.put("tipoactividad", valorCampo1);
+            actividad.put("fecha", valorCampo2);
+            actividad.put("hora", valorCampo3);
+            actividad.put("lugar", valorCampo4);
+            actividad.put("nombreactividad", valorCampo5);
+            actividad.put("idusuarios", usuarios);
 
-                    Listadodeactividades fragmentPrincipal = new Listadodeactividades (); // Reemplaza con el nombre de tu Fragment principal
-                    FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                    transaction.replace(R.id.contenedor, fragmentPrincipal); // Reemplaza "R.id.contenedor_fragment" con el ID de tu contenedor de fragmentos
-                    transaction.commit();
-                })
-                .addOnFailureListener(e -> {
-                    // Error al registrar la actividad
-                });
+            db.collection("actividades")
+                    .add(actividad)
+                    .addOnSuccessListener(documentReference -> {
+                        String nuevoDocumentoId = documentReference.getId();
+                        String codigo = nuevoDocumentoId.substring(0, 6);
+
+                        Map<String, Object> actividadConCodigo = new HashMap<>(actividad);
+                        actividadConCodigo.put("codigo", codigo);
+
+                        db.collection("actividades")
+                                .document(documentReference.getId())
+                                .set(actividadConCodigo)
+                                .addOnSuccessListener(aVoid -> {
+                                    campo1.setText("");
+                                    campo2.setText("");
+                                    campo3.setText("");
+                                    campo4.setText("");
+                                    campo5.setText("");
+
+                                    Listadodeactividades fragmentPrincipal = new Listadodeactividades();
+                                    FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.contenedor, fragmentPrincipal);
+                                    transaction.commit();
+                                })
+                                .addOnFailureListener(e -> {
+                                    // Manejar el error al registrar la actividad
+                                });
+                    })
+                    .addOnFailureListener(e -> {
+                        // Manejar el error al registrar la actividad
+                    });
+        }
     }
-
-
 }
+
+

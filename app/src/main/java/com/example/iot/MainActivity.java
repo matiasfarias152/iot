@@ -3,9 +3,9 @@ package com.example.iot;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,16 +15,22 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class MainActivity extends AppCompatActivity {
 
+    private SharedPreferences sharedPreferences;
+    private static final String SHARED_PREFS = "sharedPrefs";
+    private static final String USERNAME = "username";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+
     }
 
     public void login(View v) {
-        EditText campousuario = this.findViewById(R.id.usuario);
+        EditText campousuario = findViewById(R.id.usuario);
         String usuario = campousuario.getText().toString();
-        EditText campocontrasenia = this.findViewById(R.id.contrasenia);
+        EditText campocontrasenia = findViewById(R.id.contrasenia);
         String contrasenia = campocontrasenia.getText().toString();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -36,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             String contraseniaEnFirestore = document.getString("contrasena");
                             if (contraseniaEnFirestore != null && contraseniaEnFirestore.equals(contrasenia)) {
+                                // Guardar el nombre de usuario en SharedPreferences
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(USERNAME, usuario);
+                                editor.apply();
+
                                 Intent i = new Intent(this, Principal1.class);
                                 startActivity(i);
                             } else {
@@ -50,10 +61,9 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "Error al realizar la consulta", Toast.LENGTH_SHORT).show();
                 });
     }
+
     public void crearCuenta(View v){
-            Intent i = new Intent(this,Registrarcuenta.class);
-            startActivity(i);
-        }
-
-
+        Intent i = new Intent(this, Registrarcuenta.class);
+        startActivity(i);
+    }
 }

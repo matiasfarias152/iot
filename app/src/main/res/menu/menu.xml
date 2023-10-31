@@ -10,7 +10,7 @@
         android:id="@+id/opcion2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/invitaractividad" />
+        android:title="@string/unirseactividad" />
     <item
         android:id="@+id/opcion3"
         android:layout_width="wrap_content"

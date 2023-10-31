@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterMensajes extends RecyclerView.Adapter<HolderMensaje>{
+public class AdapterMensajes extends RecyclerView.Adapter<HolderMensaje> {
 
     private List<Mensaje> listMensaje = new ArrayList<>();
     private Context c;
@@ -20,16 +20,24 @@ public class AdapterMensajes extends RecyclerView.Adapter<HolderMensaje>{
         this.c = c;
     }
 
-    public void addMensaje(Mensaje m){
+    public void addMensaje(Mensaje m) {
         listMensaje.add(m);
         notifyItemInserted(listMensaje.size());
+    }
 
+    public boolean containsMensajeWithId(String messageId) {
+        for (Mensaje m : listMensaje) {
+            if (m.getIdDocumento().equals(messageId)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @NonNull
     @Override
     public HolderMensaje onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(c).inflate(R.layout.card_view_mensajes,parent,false);
+        View v = LayoutInflater.from(c).inflate(R.layout.card_view_mensajes, parent, false);
         return new HolderMensaje(v);
     }
 
@@ -38,7 +46,6 @@ public class AdapterMensajes extends RecyclerView.Adapter<HolderMensaje>{
         holder.getNombrechat().setText(listMensaje.get(position).getNombre());
         holder.getMensaje().setText(listMensaje.get(position).getMensaje());
         holder.getHora().setText(listMensaje.get(position).getHora());
-
     }
 
     @Override

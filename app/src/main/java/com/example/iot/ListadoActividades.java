@@ -4,18 +4,22 @@ public class ListadoActividades {
     public String lugar;
     public String fecha;
     public String hora;
-    public String tipo;
+    public String tipoactividad;
     public String nombreactividad;
+    public String codigo;
+    public Integer cantidad;
 
     public ListadoActividades(){
         //Constructor sin argumentos
     }
-    public ListadoActividades(String lugar, String fecha, String hora, String tipo, String nombreactividad) {
+    public ListadoActividades(String lugar, String fecha, String hora, String tipoactividad, String nombreactividad, String codigo, Integer cantidad) {
         this.lugar = lugar;
         this.fecha = fecha;
         this.hora = hora;
-        this.tipo = tipo;
+        this.tipoactividad = tipoactividad;
         this.nombreactividad = nombreactividad;
+        this.codigo = codigo;
+        this.cantidad = cantidad;
     }
 
     public String getNombreactividad() {
@@ -24,6 +28,22 @@ public class ListadoActividades {
 
     public void setNombreactividad(String nombreactividad) {
         this.nombreactividad = nombreactividad;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
     }
 
     public String getLugar() {
@@ -50,11 +70,11 @@ public class ListadoActividades {
         this.hora = hora;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getTipoactividad() {
+        return tipoactividad;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipoactividad(String tipoactividad) {
+        this.tipoactividad = tipoactividad;
     }
 }

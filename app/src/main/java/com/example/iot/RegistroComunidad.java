@@ -10,10 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RegistroComunidad extends Fragment {
@@ -58,29 +61,38 @@ public class RegistroComunidad extends Fragment {
     }
 
     private void registrarComunidad() {
-        String valorCampo1 = campo1.getText().toString();
-        String valorCampo2 = campo2.getText().toString();
-        String valorCampo3 = campo3.getText().toString();
+        String valorCampo1 = campo1.getText().toString().trim();
+        String valorCampo2 = campo2.getText().toString().trim();
+        String valorCampo3 = campo3.getText().toString().trim();
 
-        Map<String, Object> comunidad = new HashMap<>();
-        comunidad.put("nombrecomunidad", valorCampo1);
-        comunidad.put("tipoactividadcomunidad", valorCampo2);
-        comunidad.put("descripcioncomunidad", valorCampo3);
+        if (valorCampo1.isEmpty() || valorCampo2.isEmpty() || valorCampo3.isEmpty()) {
+            // Mostrar un mensaje de error o notificar al usuario que los campos están vacíos
+            Toast.makeText(getContext(), "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+        } else {
+            // Si los campos no están vacíos, proceder con el registro
+            List<String> usuarios = new ArrayList<>();
 
-        db.collection("comunidades")
-                .add(comunidad)
-                .addOnSuccessListener(documentReference -> {
-                    campo1.setText("");
-                    campo2.setText("");
-                    campo3.setText("");
+            Map<String, Object> comunidad = new HashMap<>();
+            comunidad.put("nombrecomunidad", valorCampo1);
+            comunidad.put("tipoactividadcomunidad", valorCampo2);
+            comunidad.put("descripcioncomunidad", valorCampo3);
+            comunidad.put("idusuarios", usuarios);
 
-                    ListaComunidades fragmentPrincipal = new ListaComunidades(); // Reemplaza con el nombre de tu Fragment principal
-                    FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                    transaction.replace(R.id.contenedor, fragmentPrincipal); // Reemplaza "R.id.contenedor_fragment" con el ID de tu contenedor de fragmentos
-                    transaction.commit();
-                })
-                .addOnFailureListener(e -> {
-                    // Manejar el error al registrar la actividad
-                });
+            db.collection("comunidades")
+                    .add(comunidad)
+                    .addOnSuccessListener(documentReference -> {
+                        campo1.setText("");
+                        campo2.setText("");
+                        campo3.setText("");
+
+                        ListaComunidades fragmentPrincipal = new ListaComunidades(); // Reemplaza con el nombre de tu Fragment principal
+                        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                        transaction.replace(R.id.contenedor, fragmentPrincipal); // Reemplaza "R.id.contenedor_fragment" con el ID de tu contenedor de fragmentos
+                        transaction.commit();
+                    })
+                    .addOnFailureListener(e -> {
+                        // Manejar el error al registrar la actividad
+                    });
+        }
     }
 }

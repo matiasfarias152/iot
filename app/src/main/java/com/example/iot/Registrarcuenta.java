@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +43,7 @@ public class Registrarcuenta extends AppCompatActivity {
             userData.put("usuario", usuarioregistro);
             userData.put("correo", correoregistro);
             userData.put("contrasena", contraseniaregistro);
+            userData.put("idamigos", new ArrayList<String>()); //Lista vacia para los amigos
 
             db.collection("usuarios").document(usuarioregistro).set(userData).addOnSuccessListener(aVoid -> {
                 Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();

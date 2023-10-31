@@ -44,7 +44,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_toRightOf="@+id/IconImageViewAmigos">
                 <TextView
-                    android:id="@+id/nombreamigoTextView"
+                    android:id="@+id/nombreintegranteTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -54,16 +54,17 @@
                     android:textStyle="bold"/>
 
 
+
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnEliminaramigo"
+                android:id="@+id/btnAnadiramigo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:backgroundTint="@color/black"
-                android:text="@string/eliminar" />
+                android:text="@string/anadir" />
 
 
         </RelativeLayout>

@@ -30,6 +30,16 @@ public class Principal1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal1);
 
+        String nombreUsuario = getIntent().getStringExtra("nombreUsuario");
+
+        chatcomunidades fragment = new chatcomunidades();
+        Bundle args = new Bundle();
+        args.putString("nombreUsuario", nombreUsuario);
+        fragment.setArguments(args);
+
+
+
+
         //Obtener fragmento principal
         FragmentManager fragmentManager = getSupportFragmentManager();
 

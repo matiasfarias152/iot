@@ -23,7 +23,7 @@
             android:id="@+id/nombrechat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Matias"
+            android:text="nombrecomunidad"
             android:layout_gravity="center"/>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
@@ -43,12 +43,16 @@
             android:layout_height="wrap_content"
             android:hint="Escribe un mensaje"
             android:layout_weight="1"/>
+
         <Button
-            
+
             android:id="@+id/btnEnviarMensaje"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Enviar"/>
+            android:backgroundTint="@color/black"
+            android:hint="Enviar"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
     </LinearLayout>
 
