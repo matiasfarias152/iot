@@ -34,6 +34,8 @@
     <string name="listaintegrantes">Lista de integrantes</string>
     <string name="anadir">Añadir</string>
     <string name="codigoactividad">Codigo actividad</string>
+    <string name="ingresatuemail">Ingresa tu email</string>
+    <string name="recuperarcuenta">Recuperar cuenta</string>
 
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

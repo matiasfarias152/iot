@@ -7,17 +7,21 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
     private static final String SHARED_PREFS = "sharedPrefs";
     private static final String USERNAME = "username";
+    private TextView olvidarCuentaTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
 
+        olvidarCuentaTextView = findViewById(R.id.olvidarcuentaTextView);
+
+        olvidarCuentaTextView.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this, Olvidarcuenta.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void login(View v) {
