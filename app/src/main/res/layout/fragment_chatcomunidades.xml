@@ -16,15 +16,17 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/fotoPerfil"
-            android:layout_width="48sp"
-            android:layout_height="48sp"
-            android:src="@mipmap/ic_launcher"/>
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:src="@drawable/chat_logo__1_"/>
+
         <TextView
             android:id="@+id/nombrechat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="nombrecomunidad"
-            android:layout_gravity="center"/>
+            android:textColor="@color/white" />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMensajes"

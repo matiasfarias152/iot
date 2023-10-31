@@ -14,12 +14,13 @@
         android:layout_marginTop="41dp"
         android:layout_marginEnd="54dp"
         android:layout_marginBottom="77dp"
+        android:tint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/usuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bannerejercicio" />
+        app:srcCompat="@drawable/atletismo" />
 
     <EditText
         android:id="@+id/contrasenia"
