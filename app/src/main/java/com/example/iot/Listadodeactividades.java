@@ -1,9 +1,13 @@
 package com.example.iot;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -25,6 +29,7 @@ public class Listadodeactividades extends Fragment {
     private List<ListadoActividades> elements;
     private RecyclerView recyclerView;
     private ListadoActividadesAdapter listAdapter;
+    private EditText editTextFilter;
 
     public Listadodeactividades() {
         // Constructor vacío
@@ -75,6 +80,7 @@ public class Listadodeactividades extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_listadodeactividades, container, false);
         recyclerView = rootView.findViewById(R.id.listRecyclerView);
+        editTextFilter = rootView.findViewById(R.id.editTextFilter); // EditText para filtrar
 
         // Configura el RecyclerView
         recyclerView.setHasFixedSize(true);
@@ -95,6 +101,38 @@ public class Listadodeactividades extends Fragment {
             transaction.commit();
         });
 
+        editTextFilter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // No se usa
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String filtro = charSequence.toString().trim(); // Texto ingresado por el usuario
+                filtrarActividades(filtro); // Método para filtrar las actividades
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // No se usa
+            }
+        });
+
         return rootView;
     }
+
+    private void filtrarActividades(String filtro) {
+        List<ListadoActividades> actividadesFiltradas = new ArrayList<>();
+
+        for (ListadoActividades actividad : elements) {
+            if (actividad.getNombreactividad().toLowerCase().contains(filtro.toLowerCase())) {
+                actividadesFiltradas.add(actividad);
+            }
+        }
+
+        listAdapter.setItems(actividadesFiltradas);
+        listAdapter.notifyDataSetChanged();
+    }
 }
+
